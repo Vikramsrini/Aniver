@@ -342,12 +342,15 @@ function vibrate(ms) {
     }, 800);
   }
 
-  heartBtn.addEventListener('click', function () {
+  function handleTap(e) {
+    if (e.type === 'touchstart') {
+      e.preventDefault(); // prevent double-tap zoom
+    }
     if (revealed) return;
 
     count++;
     countEl.textContent = count;
-    vibrate(10);
+    vibrate(12);
 
     heartBtn.classList.remove('clicked');
     void heartBtn.offsetWidth;
@@ -363,5 +366,12 @@ function vibrate(ms) {
     if (count >= THRESHOLD) {
       revealLetter();
     }
+  }
+
+  heartBtn.addEventListener('touchstart', handleTap, { passive: false });
+  heartBtn.addEventListener('click', function (e) {
+    // Only fire on non-touch (mouse/keyboard) to avoid double-firing
+    if (e.sourceCapabilities && e.sourceCapabilities.firesTouchEvents) return;
+    handleTap(e);
   });
 })();

@@ -576,6 +576,7 @@ a {
   text-align: center;
   min-height: 80svh;
   align-items: center;
+  touch-action: manipulation;
 }
 
 .love-reveal-container {
@@ -631,7 +632,6 @@ a {
 
 .ring-fill {
   fill: none;
-  stroke: url(#ringGradient, var(--color-accent));
   stroke: var(--color-accent);
   stroke-width: 5;
   stroke-linecap: round;
@@ -655,6 +655,8 @@ a {
   animation: heartPulse 1.5s ease-in-out infinite;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  touch-action: manipulation;
   display: flex;
   align-items: center;
   justify-content: center;
